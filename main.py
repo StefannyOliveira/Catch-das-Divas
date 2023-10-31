@@ -1,46 +1,32 @@
 from tupy import *
 
-
-'''Cria um plano de fundo preto'''
-class Background(Image):
+class Prova(Image):
     def __init__(self, x: int, y: int) -> None:
-        self.file = "black-background.png"
+        self.file = "prova.png"
         self.x = x
         self.y = y
-
-class Child(Image):
+        self.vel = 20
+    def update(self):
+        if self.vel:
+            self.y += self.vel
+class Player(Image):
     def __init__(self, x: int, y: int) -> None:
         self.file = "humandown.png"
         self.x = x
         self.y = y
-        self.direction = "down"
-        self.collide = False
+        self.direction = ""
     def update(self):
-        if self.direction == 'left':
-            self.file = 'humanleft.png'
-        if self.direction == 'up':
-            self.file = 'humanup.png'
-        if self.direction == 'right':
-            self.file = 'humanright.png'
-        if self.direction == 'down':
-            self.file = 'humandown.png'
-        
-        if keyboard.is_key_just_down('Left') and not self.collide:
+        if self.direction == "left":
+            self.file = "humanleft.png"
+        if self.direction == "right":
+            self.file = "humanright.png"
+        if keyboard.is_key_down('Left'):
             self.direction = "left"
             self.x -= 20
-        if keyboard.is_key_just_down('Right') and not self.collide:
+        if keyboard.is_key_down('Right'):
             self.direction = "right"
             self.x += 20
-        if keyboard.is_key_just_down('Up') and not self.collide:
-            self.direction = "up"
-            self.y -= 20
-        if keyboard.is_key_just_down('Down') and not self.collide:
-            self.direction = "down"
-            self.y += 20
-    def collides_with(self):
-        if super()._collides_with(Background) is True:
-            self.collide = True
-Child = Child(70, 150)
-Background = Background(450, 250)
+Player = Player(450, 450)
+Prova = Prova(450, 30)
 
 run(globals())
