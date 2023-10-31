@@ -38,6 +38,9 @@ class Player(Image):
             self.x += 15
             
 Player = Player(450, 450)
-Prova = Prova(450, 30)
+Provas = [Prova(450, 0), 
+          Prova(300, -200), 
+          Prova(600, -400), 
+          Prova(300, -600)]
 
 run(globals())
