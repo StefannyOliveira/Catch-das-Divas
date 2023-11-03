@@ -36,6 +36,16 @@ class Player(Image):
         if keyboard.is_key_down('Right'):
             self.direction = "right"
             self.x += 15
+
+class Monster(Image):
+    def __init__(self, x: int) -> None:
+        super().__init__('monster.png')
+        self.x = x
+        self.y = 0
+        self.velocidade = 100
+    
+    def update(self):
+        
             
 Player = Player(450, 450)
 Provas = [Prova(450, 0), 
