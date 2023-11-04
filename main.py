@@ -4,8 +4,10 @@ import random
 class Jogo(Image):
     def __init__(self):
         self.tela = 'telainicial.png'
+        self.ativo = True
     def telas(self):
-
+        pass
+                    
 class Item(Image):
     def __init__(self, x: int, y: int) -> None:
         self.file = "prova.png"
@@ -23,7 +25,7 @@ class Item(Image):
                 self.vel = 15
             case "hard":
                 self.vel = 20
-class Player(Image):
+class Jogador(Image):
     def __init__(self, x: int, y: int) -> None:
         self.file = "humandown.png"
         self.x = x
@@ -43,7 +45,7 @@ class Player(Image):
             self.direction = "right"
             self.x += 15
 
-class Monster(Image):
+class Monstro(Image):
     def __init__(self, x: int, velocidade: int) -> None:
         super().__init__('monster.png')
         self.x = x
@@ -77,10 +79,10 @@ class Fase:
 #Lembrar de Arsenário e Trilha Sonora em, respectivamente, Jogo e Fase
 
             
-Player = Player(450, 450)
-Provas = [Prova(450, 0), 
-          Prova(300, -200), 
-          Prova(600, -400), 
-          Prova(300, -600)]
+Player = Jogador(450, 450)
+Provas = [Item(450, 0), 
+          Item(300, -200), 
+          Item(600, -400), 
+          Item(300, -600)]
 
 run(globals())
