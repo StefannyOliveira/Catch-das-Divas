@@ -2,8 +2,10 @@ from tupy import *
 import random
 
 class Jogo(Image):
-    def __init__(self):
-        self.tela = 'telainicial.png'
+    def __init__(self, x, y):
+        self.file = 'image.png'
+        self.x = x
+        self.y = y
         self.ativo = True
     def telas(self):
         pass
@@ -53,23 +55,23 @@ class Monstro(Image):
         self.velocidade = velocidade
     
     def update(self):
-    self.x = self.x - self.velocidade
-    if self.x < -20:
-      self.x = 820
-    elif self.x > 820:
-      self.x = -20
-    if self._collides_with(bolha):
-            
+        self.x = self.x - self.velocidade
+        if self.x < -20:
+            self.x = 820
+        elif self.x > 820:
+            self.x = -20
+        if self._collides_with(bolha):
+            pass
 
 
     def bateu(self):
-    bolhas_a_remover = []
-    for bolha in bolhas:
-        if self._collides_with(bolha):
-            bolha.x = 1000
-            bolha.y = 1000
-            bolha.velocidade = 0
-            bolhas.remove(bolha)
+        bolhas_a_remover = []
+        for bolha in bolhas:
+            if self._collides_with(bolha):
+                bolha.x = 1000
+                bolha.y = 1000
+                bolha.velocidade = 0
+                bolhas.remove(bolha)
 
 
   
@@ -84,5 +86,6 @@ Provas = [Item(450, 0),
           Item(300, -200), 
           Item(600, -400), 
           Item(300, -600)]
+Tela = Jogo(450, 252)
 
 run(globals())
