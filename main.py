@@ -1,6 +1,12 @@
 from tupy import *
+import random
 
-class Prova(Image):
+class Jogo(Image):
+    def __init__(self):
+        self.tela = 'telainicial.png'
+    def telas(self):
+
+class Item(Image):
     def __init__(self, x: int, y: int) -> None:
         self.file = "prova.png"
         self.x = x
@@ -38,14 +44,38 @@ class Player(Image):
             self.x += 15
 
 class Monster(Image):
-    def __init__(self, x: int) -> None:
+    def __init__(self, x: int, velocidade: int) -> None:
         super().__init__('monster.png')
         self.x = x
         self.y = 0
-        self.velocidade = 100
+        self.velocidade = velocidade
     
     def update(self):
-        
+    self.x = self.x - self.velocidade
+    if self.x < -20:
+      self.x = 820
+    elif self.x > 820:
+      self.x = -20
+    if self._collides_with(bolha):
+            
+
+
+    def bateu(self):
+    bolhas_a_remover = []
+    for bolha in bolhas:
+        if self._collides_with(bolha):
+            bolha.x = 1000
+            bolha.y = 1000
+            bolha.velocidade = 0
+            bolhas.remove(bolha)
+
+
+  
+class Fase:
+  pass
+
+#Lembrar de Arsenário e Trilha Sonora em, respectivamente, Jogo e Fase
+
             
 Player = Player(450, 450)
 Provas = [Prova(450, 0), 
