@@ -1,14 +1,8 @@
 from tupy import *
-import level
+from level import Level
+from start import Start 
 import random
 
-
-class Level(Image):
-    def __init__(self):
-        self.x = 450
-        self.y = 252
-        self.file = 'level.png'
-            
-tela = Level()
+menu1 = Start()
 
 run(globals())
