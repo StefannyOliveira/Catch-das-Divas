@@ -1,6 +1,5 @@
 from tupy import *
 import random
-import pygame
 import os
 
 class TelaInicial(BaseImage):
@@ -25,27 +24,28 @@ class Personagem(Image):
         if keyboard.is_key_down('Left'):
             self.file = 'humanleft.png'
             self.x -= 15
-        if keyboard.is_key_down('Right'):
+        elif keyboard.is_key_down('Right'):
             self.file = 'humanright.png'
             self.x += 15
-        if keyboard.is_key_just_down('space'):
+        elif keyboard.is_key_just_down('space'):
             self.pulo = True
-        if self.pulo:
-            if self.pulando < 3:
+            self.pulando += 1
+        elif self.pulo:
+            if self.pulando <= 3:
                self.pulando += 1
-               self.y += 10
-            elif self.pulando < 28:
+               self.y -= 15
+            elif self.pulando < 8:
                 self.pulando += 1
-            elif self.pulando == 28:
+            elif self.pulando == 8:
                 self.pulando += 1
-                self.y -= 10
-            elif self.pulando == 29:
+                self.y += 15
+            elif self.pulando == 9:
                 self.pulando += 1
-                self.y -= 10
-            elif self.pulando == 30:
+                self.y += 15
+            elif self.pulando == 10:
                 self.pulando = 0
                 self.pulo = False
-                self.y -= 10           
+                self.y += 15           
         else:
             self.file = 'humandown.png' 
 
@@ -130,7 +130,17 @@ class Recorde(Label):
         #Método que atualiza a pontuação diminuindo.
 
 menu1 = TelaInicial()
-personagem = Personagem(180, 180)
+if keyboard.is_key_just_down('space'):
+    menu1.file = 'level.png'
+
+if (keyboard.is_key_just_down(1) or
+   keyboard.is_key_just_down(2) or 
+   keyboard.is_key_just_down(3)):
+    pass
+     
+
+
+# personagem = Personagem(180, 410)
 
 
 run(globals())
