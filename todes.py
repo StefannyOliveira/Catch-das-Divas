@@ -51,10 +51,11 @@ class Personagem(Image):
 
 class Monstro(Image):
     def __init__(self) -> None:
-        self.x = 10
-        self.y = 20
+        self.x = 30
+        self.y = 400
         self._file = 'monstro.png'
-        self.__velocidade = 40
+        self.__velocidade = 20
+        self.andar_para_direita = True
 
     @property
     def velocidade(self) -> float:
@@ -67,9 +68,18 @@ class Monstro(Image):
     #Método de definição da velocidade.
 
     def update(self) -> None:
-        if self.x > 820:
-            return False
-        self.x += self.velocidade
+        if self.x > 800:
+            self.andar_para_direita = False
+        elif self.x < 100:
+            self.andar_para_direita = True
+            
+        if self.andar_para_direita:
+            self.file = 'monstrodir.png'
+            self.x += self.velocidade
+        elif not self.andar_para_direita:
+            self.file = 'monstroesq.png'
+            self.x -= self.velocidade
+        
     #Método que atualiza a taxa de pixels dos itens.
 
     def _collides_with(self, other: TupyObject) -> bool:
@@ -140,7 +150,7 @@ if (keyboard.is_key_just_down(1) or
      
 
 
-# personagem = Personagem(180, 410)
-
+personagem = Personagem(180, 410)
+monstro = Monstro()
 
 run(globals())
