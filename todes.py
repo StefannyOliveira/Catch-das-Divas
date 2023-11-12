@@ -1,6 +1,7 @@
 from tupy import *
 import random
 import os
+import random 
 
 class TelaInicial(BaseImage):
 
@@ -11,6 +12,8 @@ class TelaInicial(BaseImage):
         self._dificil = False
         self._fim = False
 
+
+
 class Personagem(Image):
     def __init__(self, x: float, y: float, file = str) -> None:
         self.x = x
@@ -19,6 +22,7 @@ class Personagem(Image):
         self.pulando = 0
         self.pulo = False
         self.file = 'humandown.png'
+        # self.pontos = Recorde()
 
     def update(self) -> None:
         if keyboard.is_key_down('Left'):
@@ -48,6 +52,21 @@ class Personagem(Image):
                 self.y += 15           
         else:
             self.file = 'humandown.png' 
+
+        # if self.collides_with(monstro):
+        #     self.pontos.diminui(10)
+        # # for item in itens:
+        # #     if self.collides_with(item):
+
+
+
+
+    def _collides_with(self, other: TupyObject) -> bool:
+        return super()._collides_with(other)
+    
+    def collides_with(self, other: TupyObject) -> bool:
+        return super()._collides_with(other)
+
 
 class Monstro(Image):
     def __init__(self) -> None:
@@ -79,8 +98,9 @@ class Monstro(Image):
         elif not self.andar_para_direita:
             self.file = 'monstroesq.png'
             self.x -= self.velocidade
-        
-    #Método que atualiza a taxa de pixels dos itens.
+    #     if self.collides_with(personagem):
+    #         #remover valores dos pontos 
+    # #Método que atualiza a taxa de pixels dos itens.
 
     def _collides_with(self, other: TupyObject) -> bool:
         return super()._collides_with(other)
@@ -90,13 +110,12 @@ class Monstro(Image):
     
 
 class Item(Image):
-    def __init__(self, x: float, y: float, file: str, velocidade: float, angle: int) -> None:
+    def __init__(self, x: float) -> None:
         self.x = x
-        self.y = y
-        self._file = str
-        self.__velocidade = velocidade
-        self._angle = angle
-        self._hide()
+        self.y = 10
+        self._file = 'item.png'
+        self.__velocidade = 20
+        # self._hide()
     #Método inicial que armazena a posição e velocidade dos itens que caem no jogo.
 
     @property
@@ -140,17 +159,33 @@ class Recorde(Label):
         #Método que atualiza a pontuação diminuindo.
 
 menu1 = TelaInicial()
-if keyboard.is_key_just_down('space'):
-    menu1.file = 'level.png'
 
-if (keyboard.is_key_just_down(1) or
-   keyboard.is_key_just_down(2) or 
-   keyboard.is_key_just_down(3)):
-    pass
+def criaritens():
+    itemx = random.randint(0, 800)
+    item = Item(itemx)
+
+
+def update():
+    if keyboard.is_key_just_down('space'):
+        menu1._file = 'level.png'
+
+    if (keyboard.is_key_just_down('1')):
+        menu1._facil = True
+    elif (keyboard.is_key_just_down('2')):
+        menu1._medio = True
+    elif (keyboard.is_key_just_down('3')):
+        menu1._dificil = True
+    if menu1._facil:
+        criaritens()
+    # if menu1.medio:
+    # if menu1.dificil:
+
+ 
+
      
 
-
-personagem = Personagem(180, 410)
-monstro = Monstro()
+# personagem = Personagem(180, 410)
+# monstro = Monstro()
+# itens = []
 
 run(globals())
