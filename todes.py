@@ -2,6 +2,7 @@ from tupy import *
 import random
 import os
 import random 
+import pygame
 
 global itens_ruins 
 global itens_bons 
@@ -192,6 +193,10 @@ menu1 = TelaInicial()
 global monstro
 monstro = Monstro()
 monstro._hide()
+
+pygame.init()
+musica = pygame.mixer.music.load('novembrochuvoso.mp3')
+pygame.mixer.music.play()
 
 
 def criaritens() -> Item:
