@@ -23,6 +23,7 @@ pygame.init()
 musica = pygame.mixer.music.load('novembrochuvoso.mp3')
 pygame.mixer.music.play()
 
+fim = pygame.mixer.Sound('sadtrombone.wav')
 
 def criaritens() -> Item:
     global itens_bons 
@@ -123,6 +124,7 @@ def update():
 
         if pontos.recorde < 0:
             menu1._file = 'gameover.png'
+            fim.play()
             isok = False
             monstro._hide()
             mostrar_pontos._hide()
