@@ -45,10 +45,10 @@ class Personagem(Image):
 
 
         if keyboard.is_key_down('Left'):
-            self.file = 'humanleft1.png'
+            self.file = 'humanleft.png'
             self.x -= 30
         elif keyboard.is_key_down('Right'):
-            self.file = 'humanright1.png'
+            self.file = 'humanright.png'
             self.x += 30
         elif keyboard.is_key_just_down('Up'):
             self.pulo = True
