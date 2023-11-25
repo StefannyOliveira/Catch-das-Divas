@@ -10,6 +10,8 @@ global itens_bons
 global isok
 isok = False
 
+
+
 itens_ruins = []
 itens_bons = []
 class TelaInicial(BaseImage):
@@ -31,22 +33,22 @@ class Personagem(Image):
         self.pulando = 0
         self.pulo = False
         self.file = 'humandown.png'
-        self.pontos = 0
         self.proximacolisao = 0
         self.perdeu = False
         self.queda = 0
 
     def update(self) -> None:
         global monstro
+        global pontos 
         global itens_bons
         global itens_ruins
 
 
         if keyboard.is_key_down('Left'):
-            self.file = 'humanleft.png'
+            self.file = 'humanleft1.png'
             self.x -= 30
         elif keyboard.is_key_down('Right'):
-            self.file = 'humanright.png'
+            self.file = 'humanright1.png'
             self.x += 30
         elif keyboard.is_key_just_down('Up'):
             self.pulo = True
@@ -72,19 +74,19 @@ class Personagem(Image):
 
         if self.collides_with(monstro):
             if self.proximacolisao == 0:
-                self.pontos -= 10
+                pontos.diminui(10)
             self.proximacolisao += 1
             if self.proximacolisao == 15:
                 self.proximacolisao = 0
             
         for item in itens_ruins:
             if self.collides_with(item):
-                self.pontos -= 5
+                pontos.diminui(5)
                 itens_ruins.remove(item)
                 item.y = 800
         for item in itens_bons:
             if self.collides_with(item):
-                self.pontos += 5
+                pontos.aumenta(5)
                 itens_bons.remove(item)
                 item.y = 800
 
@@ -168,26 +170,32 @@ class Item(Image):
 class Recorde(Label):
 
     def __init__(self) -> None:
-        super().__init__('Recorde: 0', 500, 9, font='Times New Roman 30', color='yellow')
-        self.__recorde = 0
+        super().__init__('Recorde: 0', 180, 28, font='Arial 20', color='yellow')
+        self.recorde = 0
         self.__maiorrecorde = 0
 
         #Método inicial, herdando funções da classe Label do Tupy, que imprime a pontuação atualizada na tela
     
     def aumenta(self, pontos: int) -> None:
-        self.__recorde += pontos
-        self.text = f'Pontuação: {self.__score}'
 
-        if self.__recorde > self.__maiorrecorde:
-            self.__maiorrecorde = self.__recorde
+        self.recorde += pontos
+        self.text = f'Pontuação: {self.recorde}'
+
+        if self.recorde > self.__maiorrecorde:
+            self.__maiorrecorde = self.recorde
         
         #Método que atualiza a pontuação aumentando.
 
     def diminui(self, pontos: int) -> None:
-        self.__recorde -= pontos
-        self.text = f'Pontuação: {self.__score}'
+        self.recorde -= pontos
+        self.text = f'Pontuação: {self.recorde}'
 
         #Método que atualiza a pontuação diminuindo.
+
+
+
+global pontos
+pontos = Recorde()
 
 menu1 = TelaInicial()
 global monstro
@@ -206,9 +214,9 @@ def criaritens() -> Item:
     #considerando 1 para itens bons e 0 para itens ruins
     isgood = random.randint(0, 1)
     if isgood == 1:
-        itens_bons.append(Item(itemx,'item.png', isgood))
+        itens_bons.append(Item(itemx,'trofeu.png', isgood))
     else:
-        itens_ruins.append(Item(itemx,'item.png', isgood))            
+        itens_ruins.append(Item(itemx,'tomate.png', isgood))            
 
 
 global update_count 
@@ -234,6 +242,9 @@ global personagem
 personagem = Personagem(180, 470)
 personagem._hide()
 
+global mostrar_pontos
+mostrar_pontos = Label('', 180, 28, font = 'Arial 20',
+                color = 'white', anchor = 'nw')
 
 def update():
     global itens_ruins 
@@ -242,7 +253,9 @@ def update():
     global monstro 
     global personagem
     global isok
-
+    global pontos
+    global mostrar_pontos
+    mostrar_pontos._hide()
     if keyboard.is_key_just_down('space') and (isok is False):
         menu1._file = 'level.png'
 
@@ -272,7 +285,7 @@ def update():
             menu1._file = 'gameimg.png'
             monstro._show()
             personagem._show()
-            personagem.pontos = 0
+            pontos.recorde = 0
             personagem.perdeu = False
             personagem.y = 470
 
@@ -280,7 +293,7 @@ def update():
  
     if (menu1._file == 'gameimg.png') and isok:
         if (update_count % 60) == 0:
-            print(personagem.pontos)
+            print(pontos.recorde)
             if menu1._facil:
                 criaritens()
         if (update_count % 40) == 0:
@@ -291,19 +304,23 @@ def update():
             if menu1._dificil:
                 criaritens()
 
-        if personagem.pontos < 0:
+        if pontos.recorde < 0:
             menu1._file = 'gameover.png'
             isok = False
             monstro._hide()
+            mostrar_pontos._hide()
             personagem.perdeu = True
             for item in itens_bons:
                 item._hide()
             for item in itens_ruins:
                 item._hide()
-        
 
 
-        Label(personagem.pontos, 180, 28, font = 'Arial 20',
+
+
+
+        mostrar_pontos._hide()
+        mostrar_pontos = Label(pontos.recorde, 180, 28, font = 'Arial 20',
                 color = 'white', anchor = 'nw')
 
 
