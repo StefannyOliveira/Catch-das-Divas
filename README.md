@@ -10,7 +10,7 @@ Para jogar siga os seguintes instruções:
 3. **Jogando**: Execute o arquivo main.py e se divirta!!
 
 ## Regras do Jogo
-  Os troféus brilhantes são recompensas valiosas, rendendo 5 preciosos pontos ao serem coletados. No entanto, a maçã pode ser enganosa, pois ao ser capturada, subtraem-se 5 pontos, prejudicando a pontuação.
+  Os troféus brilhantes são recompensas valiosas, rendendo 5 preciosos pontos ao serem coletados. No entanto, os tomates são perigosos, pois ao serem capturados, subtraem-se 5 pontos, prejudicando a pontuação.
 
   O desafio verdadeiro reside na ameaça do monstruoso adversário. Se por acaso ele tocar na corajosa personagem, 10 preciosos pontos serão retirados. E há uma advertência: se a soma total dos pontos se tornar negativa, o jogo chega ao fim, derrotando a diva.
 
@@ -25,4 +25,4 @@ Para jogar siga os seguintes instruções:
 - Nota: 5
 - Talita Ester Araujo Alves
 - Nota: 5
-O jogo foi desenvolvido de forma conjunta, feito em sessões onde nos uniámoms para trabalhar no código. Dessa forma, não achamos conveniente separar o que cada um fez, pois todos contribuíram com todo o desenvolvimento. Em todas as sessões sempre garantimos que houvesse participação de todos os integrantes. Por fim, em especial Maurício e Stefanny fizeram as artes autorais usadas no jogo. 
+O jogo foi desenvolvido de forma conjunta, feito em sessões onde nos uníamos para trabalhar no código. Dessa forma, não achamos conveniente separar o que cada um fez, pois todos contribuíram com todo o desenvolvimento. Em todas as sessões sempre garantimos que houvesse participação de todos os integrantes. Por fim, em especial Maurício e Stefanny fizeram as artes autorais usadas no jogo. 
