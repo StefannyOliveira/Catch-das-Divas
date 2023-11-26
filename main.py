@@ -21,7 +21,7 @@ itens_bons = []
 
 pygame.init()
 musica = pygame.mixer.music.load('Pokemon_HeartGold_SoulSilver_-_Champion_Red_Battle_Music_HQ.mp3')
-pygame.mixer.music.play()
+pygame.mixer.music.play(-1)
 
 fim = pygame.mixer.Sound('sadtrombone.wav')
 
