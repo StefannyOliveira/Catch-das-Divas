@@ -37,8 +37,8 @@ class Personagem(Image):
         elif keyboard.is_key_down('Right'):
             self.file = 'humanright.png'
             self.x += 30
-            if self.x>840:
-               self.x=840
+            if self.x>860:
+               self.x=860
         elif keyboard.is_key_just_down('Up'):
             self.pulo = True
         elif self.pulo:
