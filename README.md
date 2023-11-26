@@ -12,7 +12,7 @@ Para jogar siga os seguintes instruções:
 ## Regras do Jogo
   Os troféus brilhantes são recompensas valiosas, rendendo 5 preciosos pontos ao serem coletados. No entanto, a maçã pode ser enganosa, pois ao ser capturada, subtraem-se 5 pontos, prejudicando a pontuação.
 
-  O desafio verdadeiro reside na ameaça do monstruoso adversário. Se por acaso eles tocarem na corajosa personagem, 10 preciosos pontos serão retirados. E há uma advertência: se a soma total dos pontos se tornar negativa, o jogo chega ao fim, derrotando a diva.
+  O desafio verdadeiro reside na ameaça do monstruoso adversário. Se por acaso ele tocar na corajosa personagem, 10 preciosos pontos serão retirados. E há uma advertência: se a soma total dos pontos se tornar negativa, o jogo chega ao fim, derrotando a diva.
 
 ## Equipe
 - Isaac Silva Borges
