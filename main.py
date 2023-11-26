@@ -20,7 +20,7 @@ itens_ruins = []
 itens_bons = []
 
 pygame.init()
-musica = pygame.mixer.music.load('novembrochuvoso.mp3')
+musica = pygame.mixer.music.load('Pokemon_HeartGold_SoulSilver_-_Champion_Red_Battle_Music_HQ.mp3')
 pygame.mixer.music.play()
 
 fim = pygame.mixer.Sound('sadtrombone.wav')
@@ -105,7 +105,9 @@ def update():
             personagem._show()
             pontos.recorde = 0
             personagem.perdeu = False
-            personagem.y = 470
+            personagem.y = 450
+            personagem.x = 30
+            monstro.x = 300
 
 
  
@@ -121,6 +123,24 @@ def update():
         if (update_count % 20) == 0:
             if menu1._dificil:
                 criaritens()
+
+        for item in itens_ruins:
+            if personagem.collides_with(item):
+                pontos.diminui(5)
+                itens_ruins.remove(item)
+                item.y = 800
+        for item in itens_bons:
+            if personagem.collides_with(item):
+                pontos.aumenta(5)
+                itens_bons.remove(item)
+                item.y = 800
+    
+        if personagem.collides_with(monstro):
+            if personagem.proximacolisao == 0:
+                pontos.diminui(10)
+            personagem.proximacolisao += 1
+            if personagem.proximacolisao == 15:
+                personagem.proximacolisao = 0
 
         if pontos.recorde < 0:
             menu1._file = 'gameover.png'
